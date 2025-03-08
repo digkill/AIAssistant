@@ -1,0 +1,8 @@
+./.idea
+output.avi
+output.mp3
+speech.wav
+yolov8n.pt
+./TTS
+
+.env
