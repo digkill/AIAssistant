@@ -1,0 +1,5 @@
+[console_scripts]
+miio-extract-tokens=miio.extract_tokens:main
+miiocli=miio.cli:create_cli
+mirobo=miio.integrations.vacuum.roborock.vacuum_cli:cli
+

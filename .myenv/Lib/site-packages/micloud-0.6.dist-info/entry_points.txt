@@ -1,0 +1,2 @@
+[console_scripts]
+micloud = micloud.cli:cli

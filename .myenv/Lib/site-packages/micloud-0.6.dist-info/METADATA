@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: micloud
+Version: 0.6
+Summary: Xiaomi cloud connect library
+Home-page: https://github.com/squachen/micloud
+Download-URL: https://github.com/Squachen/micloud/archive/v_0.6.tar.gz
+Author: Sammy Svensson
+Author-email: sammy@ssvensson.se
+License: MIT
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: tzlocal
+Requires-Dist: click
+Requires-Dist: pycryptodome
+Dynamic: author
+Dynamic: author-email
+Dynamic: download-url
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary

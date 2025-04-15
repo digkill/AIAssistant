@@ -6,3 +6,6 @@ yolov8n.pt
 ./TTS
 
 .env
+
+.output*
+.speech_*

@@ -9,6 +9,7 @@ import speech_recognition as sr
 import cv2
 from concurrent.futures import ThreadPoolExecutor
 from miio import DreameVacuum
+import uuid
 
 # Xiaomi Vacuum settings
 bot = DreameVacuum('192.168.0.42', '364a424b66794465373655614b57616a')
@@ -33,9 +34,11 @@ async def speak(text):
     await loop.run_in_executor(executor, lambda: _sync_speak(text))
 
 def _sync_speak(text):
+    filename = f"output_{uuid.uuid4().hex}.mp3"
     response = client.audio.speech.create(model="tts-1", voice="nova", input=text)
-    response.stream_to_file("output.mp3")
-    pygame.mixer.music.load("output.mp3")
+    response.stream_to_file(filename)
+
+    pygame.mixer.music.load(filename)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
         time.sleep(0.1)
@@ -45,12 +48,13 @@ async def listen():
     return await loop.run_in_executor(executor, _sync_listen)
 
 def _sync_listen():
+    filename = f"speech_{uuid.uuid4().hex}.mp3"
     with sr.Microphone() as source:
         recognizer.adjust_for_ambient_noise(source)
         audio = recognizer.listen(source)
-    with open('speech.wav', 'wb') as file:
+    with open(filename, 'wb') as file:
         file.write(audio.get_wav_data())
-    with open('speech.wav', 'rb') as audio_file:
+    with open(filename, 'rb') as audio_file:
         transcription = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
     print(f"🎙️ You said: {transcription.text}")
     return transcription.text.lower()
